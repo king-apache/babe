@@ -3,469 +3,644 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>the nigga's case</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,400;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<title>letters for kuchu puchu</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,400;1,500&family=Quicksand:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{ --ink:#2B2420; --paper:#FFF8EE; --edge:#EADBC4; --red:#E0645C; }
-  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
-  html,body{margin:0;height:100%;}
-  body{
-    font-family:'Quicksand',sans-serif; color:var(--ink);
-    background:radial-gradient(circle at 50% 20%,#3B2F4A 0%,#241C30 70%,#18121F 100%);
-    display:flex; align-items:center; justify-content:center; overflow:hidden;
-    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
-  }
-  h2,.poem,.cover-title{font-family:'Fraunces',serif;}
-  @media (prefers-reduced-motion: reduce){ *{animation-duration:.001ms!important;transition-duration:.001ms!important;} }
+:root{--ink:#2B2420;--paper:#FFF8EE;--edge:#EADBC4;--red:#E0645C;--pink:#F7C6CF;--blush:#F4A3A0;--gold:#F6D089;
+  --mint:#DFF3EA;--teal:#2F6F6A;--sun:#FFC94D;--sky:#BFE3F2}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+html,body{margin:0;height:100%}
+body{font-family:'Quicksand',sans-serif;color:var(--ink);overflow:hidden;
+  background:linear-gradient(180deg,#2A2140 0%,#3D2B4F 55%,#5A3A55 100%);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;transition:background 1s}
+body.dawn{background:linear-gradient(180deg,#9ED8E6 0%,#CDEFE3 50%,#FFE7B8 100%)}
+body.dawn .star,body.dawn .firefly{opacity:0}
+h2,.poem,.title{font-family:'Fraunces',serif}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 
-  .star{position:fixed;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.6;animation:twinkle 3s ease-in-out infinite;}
-  @keyframes twinkle{50%{opacity:.1}}
+.star{position:fixed;width:3px;height:3px;border-radius:50%;background:#fff;animation:tw 3s ease-in-out infinite;z-index:0;transition:opacity 1s}
+@keyframes tw{50%{opacity:.15}}
+.firefly{position:fixed;width:6px;height:6px;border-radius:50%;background:#FFE7A0;box-shadow:0 0 10px 3px #FFD86B;z-index:0;animation:ff 9s ease-in-out infinite;transition:opacity 1s}
+@keyframes ff{0%,100%{transform:translate(0,0)}25%{transform:translate(30px,-40px)}50%{transform:translate(-20px,-70px)}75%{transform:translate(-40px,-20px)}}
 
-  /* ---------- BOOK ---------- */
-  .stage{ perspective:1800px; width:min(88vw,360px); height:min(78svh,580px); position:relative; }
-  .book{ position:relative; width:100%; height:100%; transform-style:preserve-3d; }
-  .page{
-    position:absolute; inset:0; transform-origin:left center; transform-style:preserve-3d;
-    transition:transform 1s cubic-bezier(.6,.05,.3,1); cursor:pointer;
-  }
-  .page.flipped{ transform:rotateY(-178deg); }
-  .face{
-    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
-    border-radius:4px 16px 16px 4px; overflow:hidden;
-    background:var(--paper);
-    box-shadow:inset 14px 0 18px -12px rgba(0,0,0,.25), 0 18px 40px rgba(0,0,0,.4);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:30px 24px; text-align:center;
-  }
-  .face::after{
-    content:''; position:absolute; right:0; top:6px; bottom:6px; width:5px;
-    background:repeating-linear-gradient(90deg,var(--edge) 0 1px,transparent 1px 2px);
-  }
-  .back{ transform:rotateY(180deg); border-radius:16px 4px 4px 16px;
-    background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ctext x='8' y='26' font-size='16' opacity='.12'%3E%E2%99%A1%3C/text%3E%3C/svg%3E"); }
+/* ===== PATHWAY A ===== */
+#pathA{display:flex;flex-direction:column;align-items:center}
+.lanterns{display:flex;gap:10px;margin-bottom:14px;z-index:5}
+.lan{width:14px;height:18px;border-radius:6px 6px 8px 8px;background:#5B4A6A;transition:.5s;position:relative}
+.lan::before{content:'';position:absolute;top:-5px;left:5px;width:4px;height:5px;background:#5B4A6A;border-radius:2px}
+.lan.lit{background:#FFD86B;box-shadow:0 0 14px 4px rgba(255,216,107,.6)}
+.deck{position:relative;width:min(88vw,360px);height:min(74svh,580px);z-index:2}
+.card{position:absolute;inset:0;border-radius:18px;background:var(--paper);box-shadow:0 18px 40px rgba(0,0,0,.35);overflow:hidden;touch-action:pan-y;
+  transition:transform .55s cubic-bezier(.3,1.4,.5,1),opacity .4s;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 22px 40px;text-align:center}
+.card.gone{pointer-events:none}
+.card:not(.top) *{animation-play-state:paused!important}
+.card::after{content:'';position:absolute;inset:8px;border:1.5px dashed var(--edge);border-radius:12px;pointer-events:none}
+.cover{position:absolute;inset:0;z-index:10;background:linear-gradient(165deg,#F2D6C4,#E9C2AE);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .9s cubic-bezier(.6,.05,.3,1),opacity .9s}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:52%;background:linear-gradient(180deg,#E7B9A3,#DDA992);clip-path:polygon(0 0,100% 0,50% 100%)}
+.cover .to{position:absolute;bottom:22%;font-family:'Fraunces';font-style:italic;font-size:1.05rem;opacity:.75}
+.seal{position:relative;z-index:2;width:74px;height:74px;border-radius:50%;cursor:pointer;background:radial-gradient(circle at 35% 30%,#E87A72,#B3363C);box-shadow:0 4px 0 #8E2732,0 8px 18px rgba(0,0,0,.25);
+  display:flex;align-items:center;justify-content:center;font-size:28px;color:#FFE3DA;animation:sealbob 2s ease-in-out infinite}
+@keyframes sealbob{50%{transform:translateY(-5px) rotate(-4deg)}}
+.seal small{position:absolute;bottom:-26px;font-size:.7rem;color:var(--ink);opacity:.6;white-space:nowrap;font-family:Quicksand;font-weight:700}
+.card.open .cover{transform:translateY(-110%);opacity:0;pointer-events:none}
+.shard{position:fixed;width:12px;height:12px;background:#B3363C;border-radius:3px;z-index:20;pointer-events:none;animation:shard .8s ease-out forwards}
+@keyframes shard{to{transform:translate(var(--x),var(--y)) rotate(200deg);opacity:0}}
+.chip{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#F6E3CC;padding:5px 12px;border-radius:20px;margin-bottom:10px}
+h2{font-weight:500;font-size:1.35rem;line-height:1.22;margin:0 0 6px}
+.poem{font-style:italic;font-size:.94rem;line-height:1.55;margin:10px 0 0;white-space:pre-line}
+.hint{font-size:.7rem;font-weight:700;opacity:.5;margin-top:4px;min-height:14px}
+.scene{position:relative;width:100%;height:160px;display:flex;align-items:center;justify-content:center;margin-top:4px}
+svg{overflow:visible}
+.pnum{position:absolute;bottom:14px;font-size:.68rem;opacity:.4}
+.disc{position:absolute;bottom:30px;font-size:.68rem;font-weight:700;color:#A8323C;text-decoration:underline dotted;cursor:pointer;opacity:.75;z-index:3}
+.disc:hover{opacity:1}
 
-  /* ---------- COVER ---------- */
-  .cover .face.front{
-    background:linear-gradient(160deg,#C9454A 0%,#A8323C 100%); color:#FFF3E3;
-    box-shadow:inset 16px 0 0 #8E2732, 0 20px 50px rgba(0,0,0,.5);
-  }
-  .cover .face.front::after{display:none;}
-  .cover-frame{ border:2px solid rgba(255,243,227,.5); border-radius:10px; padding:26px 18px; width:100%; }
-  .cover-title{ font-style:italic; font-size:2rem; margin:10px 0 4px; line-height:1.1; }
-  .cover-sub{ font-size:.85rem; opacity:.85; margin:0; }
-  .tap{ font-size:.75rem; opacity:.7; margin-top:20px; animation:pulse 1.8s ease-in-out infinite; }
-  @keyframes pulse{50%{opacity:.25}}
+.cloud{transition:transform .8s ease,opacity .8s}
+.drop{animation:drop .7s linear infinite;opacity:0}.raining .drop{opacity:1}
+@keyframes drop{from{transform:translateY(0)}to{transform:translateY(45px)}}
+.umb{transform:translateX(70px);opacity:0;transition:transform .9s cubic-bezier(.3,1.5,.5,1),opacity .4s}
+.covered .umb{transform:translateX(0);opacity:1}
+.her-sad,.her-ok{transition:opacity .4s}.her-ok{opacity:0}.covered .her-ok{opacity:1}.covered .her-sad{opacity:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:290px}
+.tag{border:2px solid var(--ink);border-radius:16px;padding:5px 10px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;transition:.25s}
+.tag.on{background:var(--pink);transform:scale(1.07) rotate(-2deg)}
+.ear{transform-origin:50% 100%;transform-box:fill-box}
+.listening .ear{animation:perk .5s ease-in-out 2}
+@keyframes perk{50%{transform:rotate(-14deg) scaleY(1.15)}}
+.reply{font-size:.8rem;font-weight:700;min-height:36px;margin-top:6px;color:#A8323C;transition:opacity .3s}
+.holdbtn{margin-top:8px;border:none;border-radius:24px;padding:11px 22px;background:var(--red);color:#fff;font-family:Quicksand;font-weight:700;font-size:.85rem;box-shadow:0 6px 0 #B3363C;cursor:pointer;touch-action:none}
+.holdbtn:active{transform:translateY(4px);box-shadow:0 2px 0 #B3363C}
+#leanHeart{transform-origin:center;transform-box:fill-box}
+.zzz{opacity:0;transition:opacity .5s}.restful .zzz{opacity:1;animation:zz 2s ease-in-out infinite}
+@keyframes zz{50%{transform:translateY(-6px)}}
+input[type=range]{width:200px;accent-color:var(--red)}
+.circ{transition:cx .3s ease}
+.ball{position:absolute;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFF27A,#E8C93B);border:2px solid var(--ink);left:0;top:0;opacity:0;pointer-events:none}
+#mackie{transition:transform .9s cubic-bezier(.5,0,.3,1)}
+.mtail{transform-origin:85% 90%;transform-box:fill-box;animation:wag .3s ease-in-out infinite alternate}
+@keyframes wag{from{transform:rotate(-12deg)}to{transform:rotate(22deg)}}
+.flip{transform:scaleX(-1)}
+.count{font-size:.75rem;font-weight:700;margin-top:2px}
+.map{position:relative;width:250px;height:150px;border-radius:14px;cursor:crosshair;overflow:hidden;
+  background:#EAF2E0 radial-gradient(circle at 20% 30%,#D6E8C6 0 18px,transparent 19px),radial-gradient(circle at 75% 70%,#CFE3EE 0 26px,transparent 27px);border:2px solid var(--ink)}
+.map svg{position:absolute;inset:0}
+.pin{position:absolute;font-size:22px;transform:translate(-50%,-90%);animation:pinpop .4s cubic-bezier(.3,1.8,.5,1)}
+@keyframes pinpop{from{transform:translate(-50%,-90%) scale(0)}}
+#runner{position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);transition:left 1.4s ease-in-out,top 1.4s ease-in-out}
+.arrived{animation:hop .4s ease 3}
+@keyframes hop{50%{transform:translate(-50%,-80%)}}
+.ring{fill:none;stroke:var(--red);stroke-width:6;stroke-linecap:round;stroke-dasharray:251;stroke-dashoffset:251;transform:rotate(-90deg);transform-origin:50% 50%}
+.pinky{font-size:34px;transition:transform .4s}.promised .pinky{transform:scale(1.25) rotate(-10deg)}
+.confetti{position:fixed;top:-30px;pointer-events:none;z-index:99;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(380deg)}}
+.nav{display:flex;gap:14px;margin-top:14px;z-index:5}
+.nav button{background:rgba(255,255,255,.14);color:#FFF3E3;border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:8px 18px;font-family:Quicksand;font-weight:700;cursor:pointer}
+.nav button:disabled{opacity:.3}
 
-  /* ---------- PAGE TEXT ---------- */
-  .chip{ font-size:.68rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
-    background:#F6E3CC; padding:5px 12px; border-radius:20px; margin-bottom:12px; }
-  h2{ font-weight:500; font-size:1.45rem; line-height:1.2; margin:0 0 14px; }
-  .poem{ font-style:italic; font-size:.98rem; line-height:1.6; margin:14px 0 0; white-space:pre-line; }
-  .pnum{ position:absolute; bottom:12px; font-size:.7rem; opacity:.45; }
-  .scene{ position:relative; width:100%; height:150px; display:flex; align-items:center; justify-content:center; }
-  svg{ overflow:visible; }
+/* ===== PATHWAY B: notebook ===== */
+#pathB{position:fixed;inset:0;display:none;z-index:30}
+#pathB.show{display:block;animation:fadeIn .8s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}}
+.notebook{height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.notebook::-webkit-scrollbar{display:none}
+.sheet{height:100svh;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.pg{position:relative;width:min(86vw,360px);height:min(84svh,600px);border-radius:6px 16px 16px 6px;
+  background:#FFFDF6 repeating-linear-gradient(180deg,transparent 0 27px,#CFE7EE 27px 28px);
+  box-shadow:0 14px 34px rgba(47,111,106,.3);padding:34px 20px 30px 42px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#24413E;overflow:hidden}
+.pg::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:#F2A8A0;opacity:.6}
+.holes{position:absolute;left:8px;top:20px;bottom:20px;display:flex;flex-direction:column;justify-content:space-between}
+.holes i{width:12px;height:12px;border-radius:50%;background:#A9D6CC;box-shadow:inset 0 2px 3px rgba(0,0,0,.25)}
+.washi{position:absolute;top:-6px;width:90px;height:24px;opacity:.85;transform:rotate(-4deg);
+  background:repeating-linear-gradient(45deg,var(--sun) 0 8px,#FFE08A 8px 16px)}
+.washi.r{right:20px;transform:rotate(5deg);background:repeating-linear-gradient(45deg,#9FD9C8 0 8px,#C6EBDF 8px 16px)}
+.hand{font-family:'Caveat',cursive;font-size:1.25rem;line-height:1.3;margin:8px 0 0;white-space:pre-line;color:#2F6F6A}
+.pg h2{color:#1F3F3B}
+.label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--mint);color:var(--teal);padding:5px 12px;border-radius:20px;margin-bottom:10px;border:1.5px solid #A9D6CC}
+.pg *{transition-property:transform,opacity}
+.pgnum{position:absolute;bottom:10px;right:16px;font-family:Caveat;font-size:1rem;opacity:.5}
+.sticker{position:absolute;font-size:26px;animation:stk 3s ease-in-out infinite}
+@keyframes stk{50%{transform:rotate(10deg) scale(1.1)}}
+.dots{position:fixed;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:40}
+.dots b{width:9px;height:9px;border-radius:50%;background:rgba(47,111,106,.25);transition:.3s;cursor:pointer}
+.dots b.on{background:var(--teal);height:22px;border-radius:6px}
+.scrollhint{position:absolute;bottom:34px;font-size:.72rem;font-weight:700;opacity:.55;animation:bounce 1.4s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(6px)}}
+.mintbtn{border:none;border-radius:22px;padding:9px 16px;background:var(--teal);color:#fff;font-family:Quicksand;font-weight:700;font-size:.8rem;box-shadow:0 5px 0 #1D4A46;cursor:pointer;margin:3px}
+.mintbtn:active{transform:translateY(3px);box-shadow:0 2px 0 #1D4A46}
+.mintbtn.ghost{background:#fff;color:var(--teal);border:2px solid var(--teal);box-shadow:0 4px 0 #A9D6CC}
 
-  .page:not(.active) *{ animation-play-state:paused !important; }
+/* B2 scale */
+#beam{transform-origin:110px 46px;transform-box:view-box;transform:rotate(16deg);transition:transform .9s cubic-bezier(.3,1.7,.5,1)}
+.items{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:270px;margin-top:4px}
+.items button{font-size:.72rem;padding:6px 10px}
+.items button.used{opacity:.35;pointer-events:none}
+.verdict{font-family:Caveat;font-size:1.15rem;color:#C0504A;min-height:26px;margin-top:4px}
+.heartbig{animation:thump 1.1s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes thump{0%,100%{transform:scale(1)}20%{transform:scale(1.18)}40%{transform:scale(1)}}
 
-  /* nigga bits */
-  .band-tail{ transform-origin:0 50%; animation:flutter .5s ease-in-out infinite alternate; }
-  @keyframes flutter{ from{transform:rotate(-10deg)} to{transform:rotate(12deg)} }
-  .blink{ animation:blink 4s infinite; transform-origin:center; transform-box:fill-box; }
-  @keyframes blink{ 0%,92%,100%{transform:scaleY(1)} 95%{transform:scaleY(.1)} }
+/* B3 oops */
+#oopsGuy{transform-origin:60px 120px;transform-box:view-box;cursor:pointer}
+.tripping{animation:trip 1.3s cubic-bezier(.4,0,.3,1)}
+@keyframes trip{0%{transform:rotate(0)}25%{transform:rotate(-12deg)}45%{transform:rotate(80deg) translateY(10px)}70%{transform:rotate(80deg) translateY(10px)}100%{transform:rotate(0)}}
+.oopsword{position:absolute;font-family:Caveat;font-weight:700;font-size:1.4rem;color:#C0504A;animation:oopsUp 1.1s ease-out forwards;pointer-events:none}
+@keyframes oopsUp{from{opacity:0;transform:translateY(10px) scale(.6)}30%{opacity:1;transform:scale(1.1)}to{opacity:0;transform:translateY(-40px)}}
+.tagprop{font-family:Caveat;font-size:.95rem;fill:#2F6F6A}
+.stat{font-size:.78rem;font-weight:700;margin-top:4px}
 
-  /* 1. soul */
-  .soul-heart{ animation:beat 1.2s ease-in-out infinite; transform-origin:center; transform-box:fill-box; }
-  @keyframes beat{ 0%,100%{transform:scale(1)} 15%{transform:scale(1.15)} 30%{transform:scale(1)} 45%{transform:scale(1.1)} }
-  .glow{ animation:glow 2.4s ease-in-out infinite; }
-  @keyframes glow{ 50%{opacity:.25} }
+/* B4 family */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:290px}
+.tile{perspective:600px;height:96px;cursor:pointer}
+.tile .in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.tile.flipped .in{transform:rotateY(180deg)}
+.tile .f,.tile .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;font-size:.66rem;font-weight:700;border:2px solid #24413E}
+.tile .f{background:var(--mint)}
+.tile .f span{font-size:26px;margin-bottom:4px}
+.tile .b{background:#FFF1C9;transform:rotateY(180deg);font-family:Caveat;font-size:.95rem;line-height:1.1}
+.slang{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.slang button{border:2px solid #24413E;background:#fff;border-radius:14px;padding:5px 10px;font-family:Caveat;font-weight:700;font-size:1.05rem;cursor:pointer}
+.slangpop{position:fixed;font-family:Caveat;font-weight:700;font-size:2rem;color:#2F6F6A;pointer-events:none;z-index:60;animation:slangUp 1.4s ease-out forwards}
+@keyframes slangUp{from{opacity:0;transform:scale(.4) rotate(-10deg)}25%{opacity:1;transform:scale(1.15) rotate(6deg)}to{opacity:0;transform:translateY(-90px) rotate(-4deg)}}
 
-  /* 2. everything */
-  .lid{ transform-origin:12px 58px; transform-box:view-box; animation:lid 3s ease-in-out infinite; }
-  @keyframes lid{ 0%,15%{transform:rotate(0)} 35%,85%{transform:rotate(-38deg)} 100%{transform:rotate(0)} }
-  .pop{ position:absolute; font-size:20px; opacity:0; animation:popUp 3s ease-out infinite; }
-  @keyframes popUp{ 0%,30%{opacity:0;transform:translateY(20px) scale(.4)} 50%{opacity:1;transform:translateY(-34px) scale(1)} 85%{opacity:1} 100%{opacity:0;transform:translateY(-50px)} }
-  .coin{ position:absolute; left:20px; bottom:30px; font-size:.7rem; opacity:.6; }
+/* B5 vlog */
+.cam{position:relative;width:230px;height:150px;border-radius:14px;background:#24413E;overflow:hidden;border:3px solid #24413E}
+.cam .view{position:absolute;inset:8px;border-radius:8px;background:linear-gradient(180deg,#BFE3F2,#E9F7EF);display:flex;align-items:center;justify-content:center}
+.corner{position:absolute;width:16px;height:16px;border:3px solid #fff}
+.c1{top:14px;left:14px;border-right:none;border-bottom:none}.c2{top:14px;right:14px;border-left:none;border-bottom:none}
+.c3{bottom:14px;left:14px;border-right:none;border-top:none}.c4{bottom:14px;right:14px;border-left:none;border-top:none}
+.rec{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:700;color:#fff;background:rgba(0,0,0,.35);padding:2px 8px;border-radius:8px;opacity:0}
+.recording .rec{opacity:1}
+.recdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF4B4B;margin-right:4px;animation:blinkr 1s steps(2) infinite}
+@keyframes blinkr{50%{opacity:0}}
+.clip{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:Caveat;font-size:1.05rem;color:#24413E;background:#fff;padding:2px 10px;border-radius:10px;white-space:nowrap}
+#vlogGuy{transition:transform .4s}
+.recording #vlogGuy{animation:wave .6s ease-in-out infinite alternate}
+@keyframes wave{to{transform:rotate(6deg) translateY(-3px)}}
+.recbtn{width:54px;height:54px;border-radius:50%;border:4px solid #24413E;background:#fff;margin-top:10px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.recbtn i{width:24px;height:24px;border-radius:50%;background:#FF4B4B;transition:.3s}
+.recording+.recbtn i,.recbtn.on i{border-radius:5px;transform:scale(.8)}
 
-  /* 3. kuchu puchu */
-  .blobL{ animation:hugL 2.4s ease-in-out infinite; }
-  .blobR{ animation:hugR 2.4s ease-in-out infinite; }
-  @keyframes hugL{ 0%,100%{transform:translateX(-18px)} 45%,70%{transform:translateX(6px)} }
-  @keyframes hugR{ 0%,100%{transform:translateX(18px)} 45%,70%{transform:translateX(-6px)} }
-  .float-heart{ position:absolute; font-size:16px; opacity:0; animation:rise 2.4s ease-out infinite; }
-  @keyframes rise{ 0%,40%{opacity:0;transform:translateY(0)} 55%{opacity:1} 100%{opacity:0;transform:translateY(-60px)} }
+/* B6 training */
+.xp{width:240px;height:18px;border-radius:10px;background:#E3F1EC;border:2px solid #24413E;overflow:hidden;margin-top:8px}
+.xpfill{height:100%;width:8%;background:repeating-linear-gradient(45deg,var(--sun) 0 10px,#FFDD80 10px 20px);transition:width .6s cubic-bezier(.3,1.4,.5,1);animation:slide 1s linear infinite}
+@keyframes slide{to{background-position:28px 0}}
+.lvl{font-family:Caveat;font-size:1.3rem;font-weight:700;margin-top:6px;min-height:30px}
+.trainer{font-size:.7rem;font-weight:700;opacity:.6}
+#pupGuy{transition:transform .3s}
+.levelup{animation:lvup .5s cubic-bezier(.3,1.8,.5,1)}
+@keyframes lvup{50%{transform:translateY(-14px) scale(1.08)}}
 
-  /* 4. smile + head bob */
-  .bobhead{ transform-origin:50% 90%; transform-box:fill-box; transition:transform .4s; }
-  .smile-scene.smiling .bobhead{ animation:headbob .9s ease-in-out infinite; }
-  @keyframes headbob{ 0%,100%{transform:rotate(-7deg)} 50%{transform:rotate(7deg) translateY(-3px)} }
-  .ray{ animation:spin 14s linear infinite; transform-origin:50% 50%; transform-box:fill-box; opacity:.15; transition:opacity .6s; }
-  .smile-scene.smiling .ray{ opacity:1; }
-  @keyframes spin{ to{transform:rotate(360deg)} }
-  .sad-bit, .happy-bit{ transition:opacity .35s; }
-  .happy-bit{ opacity:0; }
-  .smile-scene.smiling .happy-bit{ opacity:1; }
-  .smile-scene.smiling .sad-bit{ opacity:0; }
-  .face-fill{ transition:fill .5s; }
-  .smile-scene.smiling .face-fill{ fill:#FBE29A; }
-  .happy-meter{ font-size:.8rem; font-weight:700; margin-top:2px; }
-  .meter-bar{ width:160px; height:8px; border-radius:6px; background:#EADBC4; margin:6px auto 0; overflow:hidden; }
-  .meter-fill{ height:100%; width:0; background:linear-gradient(90deg,#F4A3A0,#E0645C); border-radius:6px; transition:width .3s; }
-  .grump{ font-size:.7rem; opacity:.6; height:14px; margin-top:4px; }
-
-  /* 5. mackie */
-  .mac-tail{ transform-origin:15% 85%; transform-box:fill-box; animation:wag .35s ease-in-out infinite alternate; }
-  @keyframes wag{ from{transform:rotate(-10deg)} to{transform:rotate(22deg)} }
-  .bubble{ position:absolute; top:4px; right:8px; background:#fff; border:2px solid var(--ink); border-radius:14px;
-    padding:6px 10px; font-size:.75rem; font-weight:700; animation:bubble 2.6s ease-in-out infinite; }
-  @keyframes bubble{ 0%,20%{opacity:0;transform:scale(.6)} 35%,85%{opacity:1;transform:scale(1)} 100%{opacity:0} }
-
-  /* 6. travel */
-  .road{ stroke-dasharray:6 7; animation:march 1s linear infinite; }
-  @keyframes march{ to{stroke-dashoffset:-26} }
-  .runner{ offset-path:path('M20 110 C 80 20, 160 140, 250 50'); animation:run 3.6s ease-in-out infinite; offset-rotate:0deg; }
-  @keyframes run{ 0%{offset-distance:0%} 85%,100%{offset-distance:100%} }
-
-  /* closing */
-  .last .face.front{ background:linear-gradient(180deg,#FFF1F0,#FBDCDC); }
-  .btns{ display:flex; gap:12px; margin-top:20px; position:relative; height:46px; width:100%; justify-content:center; }
-  .btn{ border:none; border-radius:24px; padding:11px 20px; font-family:'Quicksand'; font-weight:700; font-size:.9rem; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,.15); transition:transform .25s; }
-  .yes{ background:var(--red); color:#fff; }
-  .no{ background:#fff; color:var(--ink); position:relative; }
-  .confetti{ position:fixed; top:-30px; pointer-events:none; z-index:99; animation:fall linear forwards; }
-  @keyframes fall{ to{ transform:translateY(110vh) rotate(380deg); } }
-
-  /* nav */
-  .nav{ position:fixed; bottom:calc(16px + env(safe-area-inset-bottom)); left:0; right:0; display:flex; justify-content:center; gap:16px; z-index:20; opacity:0; transition:opacity .5s; }
-  .nav.show{ opacity:1; }
-  .nav button{ background:rgba(255,255,255,.14); color:#FFF3E3; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:8px 18px; font-family:'Quicksand'; font-weight:700; cursor:pointer; }
+/* B7 */
+.btns2{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
 </style>
 </head>
 <body>
 
-<div class="stage">
-  <div class="book" id="book">
+<!-- =================== PATHWAY A =================== -->
+<div id="pathA">
+<div class="lanterns" id="lanterns"></div>
+<div class="deck" id="deck">
 
-    <!-- COVER -->
-    <div class="page cover">
-      <div class="face front">
-        <div class="cover-frame">
-          <svg viewBox="0 0 100 100" width="90">
-            <circle cx="50" cy="52" r="34" fill="#2B2420"/>
-            <rect x="18" y="40" width="64" height="20" rx="10" fill="#F5D3B0"/>
-            <circle class="blink" cx="40" cy="50" r="4" fill="#2B2420"/>
-            <circle class="blink" cx="60" cy="50" r="4" fill="#2B2420"/>
-            <rect x="16" y="30" width="68" height="7" rx="3" fill="#FFF3E3"/>
-            <g class="band-tail"><path d="M84 33 q14 -4 18 6 M84 34 q12 4 14 14" stroke="#FFF3E3" stroke-width="5" fill="none" stroke-linecap="round"/></g>
-          </svg>
-          <p class="cover-sub">a very serious case file</p>
-          <p class="cover-title">Why this nigga<br>is the best nigga</p>
-          <p class="cover-sub">presented humbly, with puppy eyes 🥺</p>
-          <p class="tap">tap to open</p>
-        </div>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- 1. WHOLE SOUL -->
-    <div class="page">
-      <div class="face front">
-        <span class="chip">reason one · the soul</span>
-        <h2>No one will love you<br>with their whole soul like I do.</h2>
-        <div class="scene">
-          <svg viewBox="0 0 160 140" width="170">
-            <circle class="glow" cx="80" cy="70" r="58" fill="#FBD9C9"/>
-            <path class="soul-heart" d="M80 112 C 30 80, 30 34, 58 34 C 70 34, 78 44, 80 52 C 82 44, 90 34, 102 34 C 130 34, 130 80, 80 112Z" fill="#E0645C"/>
-            <text x="80" y="78" text-anchor="middle" font-size="11" font-family="Quicksand" font-weight="700" fill="#fff">100% soul</text>
-          </svg>
-        </div>
-        <p class="poem">other niggas love with a little bit,
-half a heart, spare time.
-i love you with the whole thing,
-every corner of my soul, no leftovers.</p>
-        <span class="pnum">1</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- 2. EVERYTHING I HAVE -->
-    <div class="page">
-      <div class="face front">
-        <span class="chip">reason two · rich niggas lose</span>
-        <h2>They'll give what they want to.<br>I'll give everything I have.</h2>
-        <div class="scene">
-          <span class="coin">rich nigga: 🪙 "here, one coin"</span>
-          <svg viewBox="0 0 120 100" width="130">
-            <rect x="12" y="58" width="96" height="38" rx="6" fill="#B87F41"/>
-            <rect x="12" y="70" width="96" height="6" fill="#8C5C2B"/>
-            <rect x="54" y="66" width="12" height="14" rx="2" fill="#F6D089"/>
-            <g class="lid"><path d="M12 58 Q12 34 60 34 Q108 34 108 58Z" fill="#C99154"/></g>
-          </svg>
-          <span class="pop" style="left:38%;animation-delay:0s">💗</span>
-          <span class="pop" style="left:48%;animation-delay:.2s">🫶</span>
-          <span class="pop" style="left:58%;animation-delay:.4s">⏰</span>
-          <span class="pop" style="left:44%;animation-delay:.6s">🍫</span>
-          <span class="pop" style="left:54%;animation-delay:.8s">🥷</span>
-        </div>
-        <p class="poem">my heart, my time, my snacks,
-my last brain cell, this whole nigga.
-all of it. yours.</p>
-        <span class="pnum">2</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- 3. KUCHU PUCHU -->
-    <div class="page">
-      <div class="face front">
-        <span class="chip">reason three · kuchu puchu</span>
-        <h2>I love doing kuchu puchu<br>with you.</h2>
-        <div class="scene">
-          <svg viewBox="0 0 160 110" width="180">
-            <g class="blobL">
-              <ellipse cx="58" cy="70" rx="30" ry="32" fill="#2B2420"/>
-              <rect x="32" y="56" width="52" height="14" rx="7" fill="#F5D3B0"/>
-              <circle cx="50" cy="63" r="3" fill="#2B2420"/><circle cx="66" cy="63" r="3" fill="#2B2420"/>
-              <circle cx="72" cy="78" r="5" fill="#F4A3A0" opacity=".7"/>
-            </g>
-            <g class="blobR">
-              <ellipse cx="102" cy="72" rx="28" ry="30" fill="#F7C6CF"/>
-              <circle cx="94" cy="66" r="3" fill="#2B2420"/><circle cx="110" cy="66" r="3" fill="#2B2420"/>
-              <path d="M95 76 Q102 81 109 76" stroke="#2B2420" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <circle cx="88" cy="76" r="5" fill="#F4A3A0"/>
-            </g>
-          </svg>
-          <span class="float-heart" style="left:46%;top:30px">💕</span>
-          <span class="float-heart" style="left:54%;top:40px;animation-delay:.4s">💗</span>
-        </div>
-        <p class="poem">if it were up to me,
-it'd be kuchu puchu all day,
-all night, all the time.
-please can we kuchu puchu forever</p>
-        <span class="pnum">3</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- 4. SMILE + HEAD BOB -->
-    <div class="page">
-      <div class="face front">
-        <span class="chip">reason four · that smile</span>
-        <h2>When you smile and bob your head,<br>I'm the happiest nigga alive.</h2>
-        <div class="scene smile-scene" id="smileScene">
-          <svg viewBox="0 0 140 140" width="150" id="herFace" style="cursor:pointer">
-            <g class="ray">
-              <circle cx="70" cy="70" r="62" fill="none" stroke="#F6D089" stroke-width="5" stroke-dasharray="8 12"/>
-            </g>
-            <g class="bobhead">
-              <circle class="face-fill" cx="70" cy="70" r="38" fill="#E9DCC0"/>
-              <g class="sad-bit">
-                <line x1="54" y1="65" x2="62" y2="65" stroke="#2B2420" stroke-width="3" stroke-linecap="round"/>
-                <line x1="78" y1="65" x2="86" y2="65" stroke="#2B2420" stroke-width="3" stroke-linecap="round"/>
-                <path d="M58 86 Q70 80 82 86" stroke="#2B2420" stroke-width="3" fill="none" stroke-linecap="round"/>
-              </g>
-              <g class="happy-bit">
-                <path d="M54 66 Q58 60 62 66 M78 66 Q82 60 86 66" stroke="#2B2420" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <path d="M54 80 Q70 96 86 80" stroke="#2B2420" stroke-width="3" fill="#E0645C" stroke-linecap="round"/>
-                <circle cx="48" cy="80" r="6" fill="#F4A3A0" opacity=".8"/><circle cx="92" cy="80" r="6" fill="#F4A3A0" opacity=".8"/>
-              </g>
-            </g>
-          </svg>
-        </div>
-        <div class="happy-meter">nigga happiness: <span id="meter">0</span></div>
-        <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
-        <div class="grump" id="grump">(nigga is sad. nigga is very sad.)</div>
-        <p class="poem">when you don't smile, my whole world goes grey.
-but that little smile and head bob?
-every single time, my whole day fixes itself.</p>
-        <span class="pnum">4</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- 5. MACKIE -->
-    <div class="page">
-      <div class="face front">
-        <span class="chip">reason five · official witness</span>
-        <h2>Mackie knows you,<br>Kuchu Puchu.</h2>
-        <div class="scene">
-          <span class="bubble">woof! it's Kuchu Puchu!</span>
-          <svg viewBox="0 0 120 120" width="130">
-            <g class="mac-tail"><path d="M20 90 Q4 70 14 50" stroke="#C99154" stroke-width="10" fill="none" stroke-linecap="round"/></g>
-            <ellipse cx="65" cy="85" rx="42" ry="28" fill="#C99154"/>
-            <circle cx="65" cy="48" r="30" fill="#D9A567"/>
-            <path d="M42 34 Q34 55 44 62" stroke="#B87F41" stroke-width="10" fill="none" stroke-linecap="round"/>
-            <path d="M88 34 Q96 55 86 62" stroke="#B87F41" stroke-width="10" fill="none" stroke-linecap="round"/>
-            <circle class="blink" cx="56" cy="46" r="3.4" fill="#2B2420"/>
-            <circle class="blink" cx="74" cy="46" r="3.4" fill="#2B2420"/>
-            <ellipse cx="65" cy="58" rx="5" ry="4" fill="#2B2420"/>
-            <path d="M65 62 Q65 68 58 68 M65 62 Q65 68 72 68" stroke="#2B2420" stroke-width="1.6" fill="none"/>
-            <ellipse cx="65" cy="71" rx="4" ry="5" fill="#E0645C"/>
-          </svg>
-        </div>
-        <p class="poem">other niggas don't come with a Mackie.
-he hears your name and his tail goes crazy.
-you're part of our little pack now,
-and packs don't stay mad for long 🐾</p>
-        <span class="pnum">5</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- 6. TRAVEL -->
-    <div class="page">
-      <div class="face front">
-        <span class="chip">reason six · any distance</span>
-        <h2>I'll travel anytime<br>if it means seeing you.</h2>
-        <div class="scene">
-          <svg viewBox="0 0 270 150" width="260">
-            <path class="road" d="M20 110 C 80 20, 160 140, 250 50" stroke="#B58A54" stroke-width="3" fill="none"/>
-            <text x="250" y="40" text-anchor="middle" font-size="22">🏠</text>
-            <text x="250" y="22" text-anchor="middle" font-size="12">💗</text>
-            <text x="20" y="135" text-anchor="middle" font-size="9" font-family="Quicksand" font-weight="700" fill="#2B2420">me</text>
-            <g class="runner">
-              <circle cx="0" cy="-8" r="10" fill="#2B2420"/>
-              <rect x="-9" y="-12" width="18" height="6" rx="3" fill="#F5D3B0"/>
-              <circle cx="-3" cy="-9" r="1.5" fill="#2B2420"/><circle cx="3" cy="-9" r="1.5" fill="#2B2420"/>
-            </g>
-          </svg>
-        </div>
-        <p class="poem">trains, buses, long roads, bad weather,
-doesn't matter.
-say the word and this nigga is already on the way.</p>
-        <span class="pnum">6</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
-    <!-- CLOSING -->
-    <div class="page last">
-      <div class="face front">
-        <span class="chip">case closed</span>
-        <h2>So, judge Kuchu Puchu…<br>forgive your nigga?</h2>
-        <svg viewBox="0 0 100 100" width="80">
-          <circle cx="50" cy="52" r="34" fill="#2B2420"/>
-          <rect x="18" y="40" width="64" height="20" rx="10" fill="#F5D3B0"/>
-          <circle cx="40" cy="50" r="5" fill="#2B2420"/><circle cx="41.5" cy="48" r="1.6" fill="#fff"/>
-          <circle cx="60" cy="50" r="5" fill="#2B2420"/><circle cx="61.5" cy="48" r="1.6" fill="#fff"/>
-          <rect x="16" y="30" width="68" height="7" rx="3" fill="#E0645C"/>
-        </svg>
-        <p class="poem" id="closingText">i'm sorry for being a stupid nigga.
-but i'm your stupid nigga,
-and i'm not going anywhere.</p>
-        <div class="btns">
-          <button class="btn yes" id="yesBtn">yes 💗</button>
-          <button class="btn no" id="noBtn">no 😤</button>
-        </div>
-        <span class="pnum">— your nigga, always</span>
-      </div>
-      <div class="face back"></div>
-    </div>
-
+<div class="card" data-i="0">
+  <div class="cover"><div class="seal">♡<small>tap to open</small></div><div class="to">for kuchu puchu, on a heavy day</div></div>
+  <span class="chip">letter one · the storm</span>
+  <h2>When the day gets heavy,<br>you don't have to weather it alone.</h2>
+  <div class="scene" id="storm">
+    <svg viewBox="0 0 200 150" width="200" id="stormSvg" style="cursor:pointer">
+      <g class="cloud" id="cloud">
+        <ellipse cx="100" cy="28" rx="44" ry="18" fill="#8E8AA0"/><circle cx="80" cy="22" r="16" fill="#8E8AA0"/><circle cx="112" cy="16" r="20" fill="#8E8AA0"/>
+        <g fill="#7FB3E0"><rect class="drop" x="76" y="46" width="3" height="9" rx="2"/><rect class="drop" x="96" y="44" width="3" height="9" rx="2" style="animation-delay:.25s"/><rect class="drop" x="116" y="48" width="3" height="9" rx="2" style="animation-delay:.45s"/></g>
+      </g>
+      <g class="umb"><path d="M60 78 Q100 40 140 78Z" fill="#E0645C"/><line x1="100" y1="60" x2="100" y2="120" stroke="#2B2420" stroke-width="3"/></g>
+      <g><ellipse cx="112" cy="122" rx="20" ry="22" fill="#F7C6CF"/>
+        <g class="her-sad"><circle cx="105" cy="118" r="2.5" fill="#2B2420"/><circle cx="119" cy="118" r="2.5" fill="#2B2420"/><path d="M106 130 Q112 126 118 130" stroke="#2B2420" stroke-width="2" fill="none"/></g>
+        <g class="her-ok"><path d="M102 118 Q105 114 108 118 M116 118 Q119 114 122 118" stroke="#2B2420" stroke-width="2" fill="none"/><path d="M106 127 Q112 132 118 127" stroke="#2B2420" stroke-width="2" fill="none"/><circle cx="100" cy="126" r="3.5" fill="#F4A3A0"/></g></g>
+      <g><ellipse cx="80" cy="120" rx="20" ry="24" fill="#2B2420"/><rect x="62" y="110" width="36" height="9" rx="4" fill="#F5D3B0"/><circle cx="74" cy="114" r="2" fill="#2B2420"/><circle cx="86" cy="114" r="2" fill="#2B2420"/></g>
+    </svg>
   </div>
+  <div class="hint" id="stormHint">tap the scene</div>
+  <p class="poem">you don't have to push everyone away to get through it.
+i'm not here only for your good days.
+on the grey ones, i'll just hold the umbrella.</p>
+  <span class="disc" id="toB">if i am the problem, click here</span>
+  <span class="pnum">1</span>
 </div>
 
-<div class="nav" id="nav">
-  <button id="prev">‹ back</button>
-  <button id="next">next ›</button>
+<div class="card" data-i="1">
+  <div class="cover"><div class="seal">✉<small>tap to open</small></div><div class="to">for when it's hard to explain</div></div>
+  <span class="chip">letter two · just tell me</span>
+  <h2>I might not always understand it.<br>But I'll always listen.</h2>
+  <div class="scene" style="height:auto;flex-direction:column;gap:8px">
+    <svg viewBox="0 0 80 60" width="70" id="listener">
+      <ellipse cx="40" cy="38" rx="24" ry="22" fill="#2B2420"/>
+      <ellipse class="ear" cx="16" cy="34" rx="5" ry="8" fill="#F5D3B0"/><ellipse class="ear" cx="64" cy="34" rx="5" ry="8" fill="#F5D3B0"/>
+      <rect x="18" y="26" width="44" height="10" rx="5" fill="#F5D3B0"/><circle cx="33" cy="31" r="2.5" fill="#2B2420"/><circle cx="47" cy="31" r="2.5" fill="#2B2420"/>
+    </svg>
+    <div class="tags" id="tags"></div>
+    <div class="reply" id="reply">how are you feeling? pick any, even messy ones</div>
+  </div>
+  <p class="poem">you don't need the perfect words.
+half a sentence is enough. so is "i don't know."
+i'll ask, i'll learn, i'll stay.</p>
+  <span class="pnum">2</span>
+</div>
+
+<div class="card" data-i="2">
+  <div class="cover"><div class="seal">☁<small>tap to open</small></div><div class="to">for when you're tired</div></div>
+  <span class="chip">letter three · lean on me</span>
+  <h2>Let me be your soft place<br>to land.</h2>
+  <div class="scene" id="leanScene">
+    <svg viewBox="0 0 180 140" width="190">
+      <path id="leanHeart" d="M90 30 C80 18 64 26 72 38 L90 54 L108 38 C116 26 100 18 90 30Z" fill="#E0645C" opacity=".2"/>
+      <g><ellipse cx="72" cy="100" rx="26" ry="30" fill="#2B2420"/><rect x="48" y="86" width="48" height="11" rx="5" fill="#F5D3B0"/><circle cx="64" cy="91" r="2.5" fill="#2B2420"/><circle cx="80" cy="91" r="2.5" fill="#2B2420"/></g>
+      <g id="leanHer"><ellipse cx="120" cy="104" rx="22" ry="26" fill="#F7C6CF"/><path d="M110 100 Q114 104 118 100 M124 100 Q128 104 132 100" stroke="#2B2420" stroke-width="2" fill="none"/><circle cx="108" cy="110" r="4" fill="#F4A3A0"/>
+        <text class="zzz" x="140" y="70" font-size="14">💤</text></g>
+    </svg>
+  </div>
+  <button class="holdbtn" id="holdBtn">hold to lean 🤍</button>
+  <p class="poem">needing someone isn't weakness.
+when you're running low, borrow from me.
+that's what i'm here for.</p>
+  <span class="pnum">3</span>
+</div>
+
+<div class="card" data-i="3">
+  <div class="cover"><div class="seal">◐<small>tap to open</small></div><div class="to">for the fear of losing yourself</div></div>
+  <span class="chip">letter four · still you</span>
+  <h2>Being close to me<br>will never cost you yourself.</h2>
+  <div class="scene" style="flex-direction:column">
+    <svg viewBox="0 0 220 110" width="220">
+      <circle class="circ" id="cMe" cx="80" cy="55" r="42" fill="#2B2420" opacity=".85"/>
+      <circle class="circ" id="cHer" cx="140" cy="55" r="42" fill="#F7C6CF" opacity=".9"/>
+      <text id="cLabel" x="110" y="108" text-anchor="middle" font-size="10" font-family="Quicksand" font-weight="700" fill="#2B2420">you, whole. me, right here.</text>
+    </svg>
+    <input type="range" id="space" min="0" max="100" value="40">
+    <div class="hint">slide: close ↔ space</div>
+  </div>
+  <p class="poem">you're allowed to need space, and i'll give it.
+but you don't have to disappear to stay you.
+come back whenever. the door's never locked.</p>
+  <span class="pnum">4</span>
+</div>
+
+<div class="card" data-i="4">
+  <div class="cover"><div class="seal">🐾<small>tap to open</small></div><div class="to">a note from mackie</div></div>
+  <span class="chip">letter five · mackie's rule</span>
+  <h2>Throw it as far as you want.<br>We always come back.</h2>
+  <div class="scene" id="park" style="cursor:pointer">
+    <div class="ball" id="ball"></div>
+    <svg viewBox="0 0 110 90" width="96" id="mackie" style="position:absolute;left:20px;bottom:6px">
+      <g id="mBody">
+        <path class="mtail" d="M14 60 Q2 46 10 32" stroke="#C99154" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="50" cy="62" rx="36" ry="22" fill="#C99154"/><circle cx="76" cy="36" r="24" fill="#D9A567"/>
+        <path d="M58 24 Q50 42 60 48" stroke="#B87F41" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <circle cx="72" cy="34" r="3" fill="#2B2420"/><circle cx="86" cy="34" r="3" fill="#2B2420"/>
+        <ellipse cx="90" cy="44" rx="4" ry="3" fill="#2B2420"/><ellipse cx="86" cy="52" rx="3" ry="4" fill="#E0645C"/>
+      </g>
+    </svg>
+  </div>
+  <div class="count" id="fetchCount">tap anywhere to throw the ball</div>
+  <p class="poem">mackie doesn't care how far it goes.
+he runs out, he runs back, tail going crazy.
+that's the plan for me too 🐾</p>
+  <span class="pnum">5</span>
+</div>
+
+<div class="card" data-i="5">
+  <div class="cover"><div class="seal">✈<small>tap to open</small></div><div class="to">for any distance</div></div>
+  <span class="chip">letter six · wherever you are</span>
+  <h2>Drop a pin.<br>I'm already on my way.</h2>
+  <div class="scene">
+    <div class="map" id="map">
+      <svg viewBox="0 0 250 150"><path d="M0 120 C 60 90, 120 140, 250 60" stroke="#C9B48E" stroke-width="3" fill="none" stroke-dasharray="6 6"/></svg>
+      <svg id="runner" viewBox="-14 -14 28 28" style="left:30px;top:120px">
+        <circle r="11" fill="#2B2420"/><rect x="-10" y="-5" width="20" height="6" rx="3" fill="#F5D3B0"/>
+        <circle cx="-4" cy="-2" r="1.5" fill="#2B2420"/><circle cx="4" cy="-2" r="1.5" fill="#2B2420"/></svg>
+    </div>
+  </div>
+  <div class="hint" id="mapHint">tap anywhere on the map</div>
+  <p class="poem">a bad day, a long road, a late train.
+none of it is too far.
+you don't have to come find me. i'll come to you.</p>
+  <span class="pnum">6</span>
+</div>
+
+<div class="card" data-i="6" style="background:linear-gradient(180deg,#FFF1F0,#FBDCDC)">
+  <div class="cover"><div class="seal">∞<small>tap to open</small></div><div class="to">the last one, the important one</div></div>
+  <span class="chip">letter seven · a promise</span>
+  <h2>Whatever you're going through,<br>I'm not going anywhere.</h2>
+  <div class="scene" id="promise" style="height:130px">
+    <svg viewBox="0 0 100 100" width="110" style="position:absolute"><circle class="ring" id="ring" cx="50" cy="50" r="40"/></svg>
+    <button class="holdbtn" id="pinkyBtn" style="border-radius:50%;width:84px;height:84px;padding:0;box-shadow:none;background:#fff;border:2px solid var(--ink)"><span class="pinky">🤙</span></button>
+  </div>
+  <div class="hint" id="pinkyHint">hold for a pinky promise</div>
+  <p class="poem" id="closing">push me away and i'll wait at the door.
+go quiet and i'll leave the light on.
+you're not too much. you never were.</p>
+  <span class="pnum">— your guy, always</span>
+</div>
+
+</div>
+<div class="nav"><button id="prev">‹ back</button><button id="next">next ›</button></div>
+</div>
+
+<!-- =================== PATHWAY B =================== -->
+<div id="pathB">
+<div class="dots" id="dots"></div>
+<div class="notebook" id="notebook">
+
+<!-- B1 -->
+<section class="sheet"><div class="pg">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi"></div>
+  <span class="label">the other notebook</span>
+  <h2>Okay. If it's me,<br>I want to know.</h2>
+  <svg viewBox="0 0 120 110" width="120" style="margin-top:6px">
+    <ellipse cx="60" cy="70" rx="34" ry="36" fill="#2B2420"/>
+    <rect x="28" y="54" width="64" height="15" rx="7" fill="#F5D3B0"/>
+    <circle cx="48" cy="61" r="5" fill="#2B2420"/><circle cx="49.5" cy="59" r="1.6" fill="#fff"/>
+    <circle cx="72" cy="61" r="5" fill="#2B2420"/><circle cx="73.5" cy="59" r="1.6" fill="#fff"/>
+    <text x="96" y="40" font-size="18">🥺</text>
+  </svg>
+  <p class="hand">no defending myself. no "but".
+just me, reading this with you,
+owning whatever i did.</p>
+  <div class="scrollhint">scroll down ↓</div>
+  <span class="pgnum">i</span>
+</div></section>
+
+<!-- B2 -->
+<section class="sheet"><div class="pg">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi r"></div>
+  <span class="label">the scale doesn't lie</span>
+  <h2>Nothing will ever be<br>more important than you.</h2>
+  <svg viewBox="0 0 220 120" width="230">
+    <polygon points="110,46 98,112 122,112" fill="#A9D6CC"/>
+    <g id="beam">
+      <rect x="20" y="43" width="180" height="6" rx="3" fill="#2F6F6A"/>
+      <line x1="34" y1="46" x2="34" y2="74" stroke="#2F6F6A" stroke-width="2"/>
+      <line x1="186" y1="46" x2="186" y2="74" stroke="#2F6F6A" stroke-width="2"/>
+      <path d="M8 74 Q34 90 60 74Z" fill="#CFE7EE" stroke="#2F6F6A" stroke-width="2"/>
+      <path d="M160 74 Q186 90 212 74Z" fill="#FFE1E6" stroke="#2F6F6A" stroke-width="2"/>
+      <g id="pile"></g>
+      <path class="heartbig" d="M186 72 C176 60 162 66 170 52 C176 44 184 48 186 54 C188 48 196 44 202 52 C210 66 196 60 186 72Z" fill="#E0645C"/>
+      <text x="186" y="102" text-anchor="middle" font-size="9" font-weight="700" font-family="Quicksand" fill="#2F6F6A">you</text>
+    </g>
+  </svg>
+  <div class="items" id="items"></div>
+  <div class="verdict" id="verdict">put anything on the other side. go on.</div>
+  <p class="hand" style="font-size:1.1rem">everything i do, i'm doing for you.</p>
+  <span class="pgnum">ii</span>
+</div></section>
+
+<!-- B3 -->
+<section class="sheet"><div class="pg">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi"></div>
+  <span class="label">known issues</span>
+  <h2>I'll say dumb things.<br>I'll do dumb things.<br>But I'm yours.</h2>
+  <div style="position:relative">
+    <svg viewBox="0 0 120 130" width="120" id="oopsSvg">
+      <g id="oopsGuy">
+        <ellipse cx="60" cy="80" rx="30" ry="34" fill="#2B2420"/>
+        <rect x="32" y="64" width="56" height="13" rx="6" fill="#F5D3B0"/>
+        <circle cx="50" cy="70" r="3" fill="#2B2420"/><circle cx="70" cy="70" r="3" fill="#2B2420"/>
+        <rect x="38" y="92" width="44" height="16" rx="4" fill="#FFF1C9" stroke="#2F6F6A" stroke-width="1.5"/>
+        <text x="60" y="103" text-anchor="middle" class="tagprop">property of K.P.</text>
+      </g>
+    </svg>
+  </div>
+  <div class="hint" style="opacity:.6">tap him</div>
+  <div class="stat" id="oopsStat">dumb moments: 0 · still yours: 100%</div>
+  <p class="hand">i'll mess up more than i'd like.
+but the label stays on.
+whatever i trip over, i trip over as yours.</p>
+  <span class="pgnum">iii</span>
+</div></section>
+
+<!-- B4 -->
+<section class="sheet"><div class="pg">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi r"></div>
+  <span class="label">exhibit a · the family report</span>
+  <h2>You made me a better guy.<br>Not just for you.</h2>
+  <div class="tiles">
+    <div class="tile"><div class="in"><div class="f"><span>📱</span>dad</div><div class="b">couldn't even call him before. now i face time him when he's away.</div></div></div>
+    <div class="tile"><div class="in"><div class="f"><span>🫶</span>mom</div><div class="b">i talk more openly now. actual feelings. out loud.</div></div></div>
+    <div class="tile"><div class="in"><div class="f"><span>🎮</span>sister</div><div class="b">we talk now. we play games. she doesn't mind me. we're bonding.</div></div></div>
+  </div>
+  <div class="hint" style="opacity:.6">tap the cards</div>
+  <div class="slang">
+    <button>dayumm</button><button>dafuhh</button><button>hell naww</button><button>ninja 🥷</button>
+  </div>
+  <p class="hand" style="font-size:1.1rem">i even speak sister now. fluent in kid.
+none of this was happening before you.</p>
+  <span class="pgnum">iv</span>
+</div></section>
+
+<!-- B5 -->
+<section class="sheet"><div class="pg">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi"></div>
+  <span class="label">exhibit b · breaking news</span>
+  <h2>This guy started<br>vlogging. For you.</h2>
+  <div class="cam" id="cam">
+    <div class="view">
+      <svg viewBox="0 0 80 80" width="70" id="vlogGuy">
+        <ellipse cx="40" cy="48" rx="24" ry="26" fill="#2B2420"/>
+        <rect x="18" y="36" width="44" height="11" rx="5" fill="#F5D3B0"/>
+        <circle cx="32" cy="41" r="2.5" fill="#2B2420"/><circle cx="48" cy="41" r="2.5" fill="#2B2420"/>
+        <path d="M33 56 Q40 62 47 56" stroke="#F5D3B0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <text x="62" y="26" font-size="14">👋</text>
+      </svg>
+    </div>
+    <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+    <div class="rec"><span class="recdot"></span>REC <span id="rectime">00:00</span></div>
+    <div class="clip" id="clip">tap record</div>
+  </div>
+  <button class="recbtn" id="recBtn"><i></i></button>
+  <p class="hand">me. the guy who never recorded anything.
+now filming random bits of my day
+just so you're in it too.</p>
+  <span class="pgnum">v</span>
+</div></section>
+
+<!-- B6 -->
+<section class="sheet"><div class="pg">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi r"></div>
+  <span class="label">training progress</span>
+  <h2>Turns out I'm<br>very trainable.</h2>
+  <svg viewBox="0 0 120 100" width="110" id="pupGuy">
+    <ellipse cx="60" cy="62" rx="30" ry="32" fill="#2B2420"/>
+    <rect x="32" y="48" width="56" height="13" rx="6" fill="#F5D3B0"/>
+    <circle cx="50" cy="54" r="3" fill="#2B2420"/><circle cx="70" cy="54" r="3" fill="#2B2420"/>
+    <path d="M30 34 L42 14 L50 30 L60 10 L70 30 L78 14 L90 34Z" fill="#FFC94D" stroke="#2F6F6A" stroke-width="1.5" id="crown" opacity="0"/>
+  </svg>
+  <div class="trainer">trainer: kuchu puchu · time training: a few months</div>
+  <div class="xp"><div class="xpfill" id="xp"></div></div>
+  <div class="lvl" id="lvl">level 1: clueless guy</div>
+  <button class="mintbtn" id="trainBtn">train him 🦴</button>
+  <p class="hand" style="font-size:1.1rem">all of this in just months.
+imagine me in a year.
+give me time. i'll be everything you deserve.</p>
+  <span class="pgnum">vi</span>
+</div></section>
+
+<!-- B7 -->
+<section class="sheet"><div class="pg" style="background:#FFFDF6 repeating-linear-gradient(180deg,transparent 0 27px,#FBE0D8 27px 28px)">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="washi"></div><div class="washi r"></div>
+  <span class="label">last page</span>
+  <h2 id="bTitle">So… keep your<br>work-in-progress guy?</h2>
+  <span class="sticker" style="top:70px;left:50px">🌼</span><span class="sticker" style="top:90px;right:30px;animation-delay:.6s">🐾</span>
+  <p class="hand" id="bClosing">i'm not perfect yet.
+but every bit of better in me has your name on it.
+and i'm not done getting better for you.</p>
+  <div class="btns2">
+    <button class="mintbtn" id="bYes">yes, keep him 💛</button>
+    <button class="mintbtn ghost" id="bBack">back to the letters ✉</button>
+  </div>
+  <span class="pgnum">— your guy, still training</span>
+</div></section>
+
+</div>
 </div>
 
 <script>
-(function(){
-  // stars
-  for(let i=0;i<40;i++){
-    const s=document.createElement('div'); s.className='star';
-    s.style.left=Math.random()*100+'vw'; s.style.top=Math.random()*100+'vh';
-    s.style.animationDelay=(Math.random()*3)+'s'; document.body.appendChild(s);
-  }
+(()=>{
+const $=id=>document.getElementById(id);
+const confetti=(bits)=>{for(let i=0;i<28;i++){const c=document.createElement('div');c.className='confetti';c.textContent=bits[i%bits.length];
+  c.style.left=Math.random()*100+'vw';c.style.fontSize=14+Math.random()*16+'px';c.style.animationDuration=2.2+Math.random()*1.8+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),4200)}};
+for(let i=0;i<40;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*3+'s';document.body.appendChild(s)}
+for(let i=0;i<6;i++){const f=document.createElement('div');f.className='firefly';f.style.left=Math.random()*100+'vw';f.style.top=50+Math.random()*50+'vh';f.style.animationDelay=-Math.random()*9+'s';document.body.appendChild(f)}
 
-  const pages=[...document.querySelectorAll('.page')];
-  const nav=document.getElementById('nav');
-  let current=0;
-
-  function layout(){
-    pages.forEach((p,i)=>{
-      const flipped=i<current;
-      p.classList.toggle('flipped',flipped);
-      p.style.zIndex = flipped ? i : pages.length - i;
-      p.classList.toggle('active', i===current);
-    });
-    nav.classList.toggle('show', current>0);
-  }
-  function next(){ if(current<pages.length-1){ current++; layout(); } }
-  function prev(){ if(current>0){ current--; layout(); } }
-
-  pages.forEach((p,i)=>p.addEventListener('click',e=>{
-    if(e.target.closest('button')) return;
-    if(i!==current) return;
-    next();
-  }));
-  document.getElementById('next').onclick=next;
-  document.getElementById('prev').onclick=prev;
-
-  // swipe
-  let sx=null;
-  document.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
-  document.addEventListener('touchend',e=>{
-    if(sx===null) return; const dx=e.changedTouches[0].clientX-sx;
-    if(dx<-50) next(); else if(dx>50) prev(); sx=null;
+/* ---------- PATHWAY A ---------- */
+const cards=[...document.querySelectorAll('.card')];
+const lan=$('lanterns');cards.forEach(()=>{const l=document.createElement('div');l.className='lan';lan.appendChild(l)});
+let cur=0;
+function layout(){
+  cards.forEach((c,i)=>{
+    c.classList.toggle('top',i===cur);c.classList.toggle('gone',i<cur);
+    if(i<cur){c.style.transform='translateX(-130%) rotate(-18deg)';c.style.opacity=0}
+    else{const d=i-cur;c.style.transform=`translateY(${d*10}px) scale(${1-d*.04}) rotate(${d%2?2:-2}deg)`;c.style.opacity=d>2?0:1}
+    c.style.zIndex=cards.length-i;
   });
+  [...lan.children].forEach((l,i)=>l.classList.toggle('lit',i<cur||(i===cur&&cards[i].classList.contains('open'))));
+  $('prev').disabled=cur===0;$('next').disabled=cur===cards.length-1;
+}
+const next=()=>{if(cur<cards.length-1){cur++;layout()}},prev=()=>{if(cur>0){cur--;layout()}};
+$('next').onclick=next;$('prev').onclick=prev;
 
-  // smile cycle: not smiling -> happiness 0, smiling -> climbs to ∞
-  const scene=document.getElementById('smileScene');
-  const meter=document.getElementById('meter');
-  const fill=document.getElementById('meterFill');
-  const grump=document.getElementById('grump');
-  const steps=['0','1','10','100','1,000','99,999','∞'];
-  let climb=null, loop=null;
+document.querySelectorAll('.seal').forEach(s=>s.addEventListener('click',()=>{
+  const card=s.closest('.card'),r=s.getBoundingClientRect();
+  for(let i=0;i<10;i++){const sh=document.createElement('div');sh.className='shard';sh.style.left=r.left+r.width/2+'px';sh.style.top=r.top+r.height/2+'px';
+    const a=Math.random()*6.28;sh.style.setProperty('--x',Math.cos(a)*90+'px');sh.style.setProperty('--y',Math.sin(a)*90+'px');document.body.appendChild(sh);setTimeout(()=>sh.remove(),800)}
+  card.classList.add('open');layout();
+}));
 
-  function sad(){
-    scene.classList.remove('smiling');
-    clearInterval(climb);
-    meter.textContent='0'; fill.style.width='0%';
-    grump.textContent='(nigga is sad. nigga is very sad.)';
-    loop=setTimeout(smile,2600);
-  }
-  function smile(){
-    clearTimeout(loop); clearInterval(climb);
-    scene.classList.add('smiling');
-    grump.textContent='(she smiled!! nigga is alive again)';
-    let s=0;
-    climb=setInterval(()=>{
-      meter.textContent=steps[s];
-      fill.style.width=Math.round((s/(steps.length-1))*100)+'%';
-      if(++s>=steps.length) clearInterval(climb);
-    },280);
-    loop=setTimeout(sad,4200);
-  }
-  document.getElementById('herFace').addEventListener('click',e=>{ e.stopPropagation(); smile(); });
-  sad();
+let sx=null,dragCard=null;
+cards.forEach(c=>c.addEventListener('pointerdown',e=>{
+  if(!c.classList.contains('top')||!c.classList.contains('open')||e.target.closest('button,input,.map,#park,#stormSvg,.tag,.disc'))return;
+  sx=e.clientX;dragCard=c;c.style.transition='none'}));
+addEventListener('pointermove',e=>{if(!dragCard)return;const dx=e.clientX-sx;dragCard.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`});
+addEventListener('pointerup',e=>{if(!dragCard)return;const dx=e.clientX-sx;dragCard.style.transition='';dragCard=null;if(dx<-70)next();else if(dx>70)prev();else layout()});
 
-  // closing buttons
-  const yes=document.getElementById('yesBtn'), no=document.getElementById('noBtn');
-  let noCount=0;
-  const noLines=['no 😤','are you sure? 🥺','really sure?? 🥹','mackie is watching 🐕','ok fine, try yes'];
-  no.addEventListener('click',()=>{
-    noCount++;
-    no.textContent=noLines[Math.min(noCount,noLines.length-1)];
-    yes.style.transform=`scale(${1+noCount*0.18})`;
-    no.style.transform=`translateX(${(noCount%2?1:-1)*30}px)`;
-  });
-  yes.addEventListener('click',()=>{
-    document.getElementById('closingText').textContent=
-      "yayyy 🥹\nthis nigga promises to be a better nigga.\nkuchu puchu now please.";
-    no.style.display='none'; yes.textContent='i love you 💗';
-    const bits=['💗','🥷','🐾','💕','✨'];
-    for(let i=0;i<26;i++){
-      const c=document.createElement('div'); c.className='confetti';
-      c.textContent=bits[Math.floor(Math.random()*bits.length)];
-      c.style.left=Math.random()*100+'vw';
-      c.style.fontSize=(14+Math.random()*16)+'px';
-      c.style.animationDuration=(2.2+Math.random()*1.8)+'s';
-      document.body.appendChild(c); setTimeout(()=>c.remove(),4200);
-    }
-  });
+const storm=$('storm');let st=0;
+$('stormSvg').onclick=()=>{st=(st+1)%3;storm.classList.toggle('raining',st>=1);storm.classList.toggle('covered',st===2);
+  $('stormHint').textContent=['tap the scene',"uh oh, it's raining. tap again",'covered. always.'][st];$('cloud').style.transform=st===2?'translateX(-8px)':''};
 
-  layout();
+const feelings={'overwhelmed':'then we go slow. one thing at a time.','numb':"that's okay. i'll sit with you till it softens.",'scared':"you're safe with me. nothing you feel scares me off.",'annoyed at everyone':"even me? fair. i'm still not leaving.",'tired':"rest. i'll hold everything else.","i don't know":"that's a real answer. we'll figure it out together.",'too much':"you're not too much. you never were."};
+Object.keys(feelings).forEach(k=>{const t=document.createElement('span');t.className='tag';t.textContent=k;$('tags').appendChild(t);
+  t.onclick=()=>{document.querySelectorAll('.tag').forEach(x=>x.classList.remove('on'));t.classList.add('on');
+    const L=$('listener');L.classList.remove('listening');void L.offsetWidth;L.classList.add('listening');
+    $('reply').style.opacity=0;setTimeout(()=>{$('reply').textContent=feelings[k];$('reply').style.opacity=1},200)}});
+
+const hb=$('holdBtn'),her=$('leanHer'),heart=$('leanHeart'),ls=$('leanScene');let lt=null,lv=0;
+const lean=on=>{clearInterval(lt);lt=setInterval(()=>{lv=Math.max(0,Math.min(1,lv+(on?.05:-.06)));
+  her.style.transform=`translate(${-lv*22}px,${lv*4}px) rotate(${-lv*18}deg)`;heart.style.opacity=.2+lv*.8;heart.style.transform=`scale(${1+lv*.6})`;
+  ls.classList.toggle('restful',lv>.9);if(lv===0||lv===1)clearInterval(lt)},30)};
+hb.addEventListener('pointerdown',e=>{e.preventDefault();lean(true)});
+['pointerup','pointerleave','pointercancel'].forEach(ev=>hb.addEventListener(ev,()=>lean(false)));
+
+$('space').oninput=e=>{const v=+e.target.value,gap=10+v*.9;$('cMe').setAttribute('cx',110-gap);$('cHer').setAttribute('cx',110+gap);
+  $('cLabel').textContent=v<15?'close, and still completely you':v>80?"take the space. i'm right here.":'you, whole. me, right here.'};
+
+const park=$('park'),ball=$('ball'),mac=$('mackie');let fetches=0,busy=false;
+park.onclick=e=>{if(busy)return;busy=true;const r=park.getBoundingClientRect();
+  const x=Math.max(20,Math.min(r.width-30,e.clientX-r.left)),y=Math.max(10,Math.min(r.height-30,e.clientY-r.top));
+  ball.style.transition='none';ball.style.opacity=1;ball.style.transform='translate(40px,120px)';void ball.offsetWidth;
+  ball.style.transition='transform .6s cubic-bezier(.2,.8,.4,1)';ball.style.transform=`translate(${x}px,${y}px)`;
+  setTimeout(()=>{$('mBody').style.transformOrigin='55px 45px';mac.style.transform=`translateX(${x-60}px)`;
+    setTimeout(()=>{ball.style.opacity=0;$('mBody').setAttribute('class','flip');mac.style.transform='translateX(0)';
+      setTimeout(()=>{$('mBody').setAttribute('class','');fetches++;$('fetchCount').textContent=`came back ${fetches} time${fetches>1?'s':''}. will come back every time 🐾`;busy=false},900)},900)},600)};
+
+const map=$('map'),run=$('runner');
+map.onclick=e=>{const r=map.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  map.querySelectorAll('.pin').forEach(p=>p.remove());const p=document.createElement('div');p.className='pin';p.textContent='📍';p.style.left=x+'px';p.style.top=y+'px';map.appendChild(p);
+  run.classList.remove('arrived');run.style.left=x+'px';run.style.top=(y+6)+'px';$('mapHint').textContent='on my way...';
+  setTimeout(()=>{run.classList.add('arrived');p.textContent='💗';$('mapHint').textContent='here. told you.'},1400)};
+
+const pb=$('pinkyBtn'),ring=$('ring');let pv=0,pt=null,done=false;
+const hold=on=>{if(done)return;clearInterval(pt);pt=setInterval(()=>{pv=Math.max(0,Math.min(1,pv+(on?.02:-.04)));ring.style.strokeDashoffset=251*(1-pv);
+  if(pv>=1){clearInterval(pt);done=true;finish()}if(pv<=0)clearInterval(pt)},30)};
+pb.addEventListener('pointerdown',e=>{e.preventDefault();hold(true)});
+['pointerup','pointerleave','pointercancel'].forEach(ev=>pb.addEventListener(ev,()=>hold(false)));
+function finish(){$('promise').classList.add('promised');$('pinkyHint').textContent='promised. no take-backs.';
+  $('closing').textContent="bad days, quiet days, push-me-away days.\ni'll still be your guy on all of them.\nkuchu puchu, whenever you're ready 🤍";confetti(['🤍','💗','🐾','✨','🏮'])}
+
+/* ---------- SWITCH ---------- */
+const A=$('pathA'),B=$('pathB');
+$('toB').onclick=e=>{e.stopPropagation();A.style.display='none';B.classList.add('show');document.body.classList.add('dawn');$('notebook').scrollTop=0};
+$('bBack').onclick=()=>{B.classList.remove('show');A.style.display='flex';document.body.classList.remove('dawn')};
+
+/* ---------- PATHWAY B ---------- */
+const nb=$('notebook'),sheets=[...nb.querySelectorAll('.sheet')],dots=$('dots');
+sheets.forEach((s,i)=>{const d=document.createElement('b');d.onclick=()=>s.scrollIntoView({behavior:'smooth'});dots.appendChild(d)});
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const i=sheets.indexOf(en.target);[...dots.children].forEach((d,j)=>d.classList.toggle('on',i===j))}}),{root:nb,threshold:.6});
+sheets.forEach(s=>io.observe(s));
+
+// scale
+const things=[['🎬','movies',"a whole movie marathon. still lighter than you."],['🎮','games',"ranked games? don't care. you win."],['🍕','food',"even food. and you know how i am about food."],['😴','sleep',"i'd skip sleep for you. i have."],['📱','phone',"the phone goes down when you need me."],['🐕','mackie',"sorry mackie. you're second. he knows."]];
+let n=0;
+things.forEach(([e,name,line])=>{const b=document.createElement('button');b.className='mintbtn ghost';b.textContent=e+' '+name;$('items').appendChild(b);
+  b.onclick=()=>{b.classList.add('used');const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',22+(n%3)*12);t.setAttribute('y',74-Math.floor(n/3)*13);t.setAttribute('font-size','13');t.textContent=e;$('pile').appendChild(t);n++;
+    const beam=$('beam');beam.style.transform='rotate(4deg)';setTimeout(()=>beam.style.transform='rotate(16deg)',350);
+    $('verdict').textContent=n===things.length?"everything i have, all at once. you still win. always.":line}});
+
+// oops
+let oops=0;const og=$('oopsGuy'),words=['oops','my bad','why did i say that','uh oh','again??'];
+$('oopsSvg').onclick=()=>{if(og.classList.contains('tripping'))return;og.classList.add('tripping');oops++;
+  const w=document.createElement('div');w.className='oopsword';w.textContent=words[(oops-1)%words.length];w.style.left='70px';w.style.top='0';$('oopsSvg').parentElement.appendChild(w);setTimeout(()=>w.remove(),1100);
+  setTimeout(()=>{og.classList.remove('tripping');$('oopsStat').textContent=`dumb moments: ${oops} · still yours: 100%`},1300)};
+
+// tiles + slang
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>t.classList.toggle('flipped'));
+document.querySelectorAll('.slang button').forEach(b=>b.onclick=e=>{const p=document.createElement('div');p.className='slangpop';p.textContent=b.textContent;
+  p.style.left=(e.clientX-40)+'px';p.style.top=(e.clientY-40)+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),1400)});
+
+// vlog
+const clips=['day 1: me eating, as usual','showing you the sky 🌤','mackie cameo 🐕','sister roasting me','me saying hi to you 👋','random walk, wish you were here'];
+let rec=false,rt=null,sec=0,ci=0;
+$('recBtn').onclick=()=>{rec=!rec;$('cam').classList.toggle('recording',rec);$('recBtn').classList.toggle('on',rec);
+  if(rec){sec=0;$('clip').textContent=clips[ci++%clips.length];rt=setInterval(()=>{sec++;$('rectime').textContent='00:'+String(sec).padStart(2,'0');if(sec%3===0)$('clip').textContent=clips[ci++%clips.length]},1000)}
+  else{clearInterval(rt);$('clip').textContent='saved. sending to kuchu puchu 💌'}};
+
+// training
+const levels=['level 1: clueless guy','level 2: calls his dad now','level 3: says feelings out loud','level 4: fluent in sister','level 5: certified vlogger','level 6: almost perfect for you','level ∞: all yours, fully trained 👑'];
+let lvl=0;
+$('trainBtn').onclick=()=>{if(lvl>=levels.length-1)return;lvl++;$('lvl').textContent=levels[lvl];
+  $('xp').style.width=(8+lvl/(levels.length-1)*92)+'%';const g=$('pupGuy');g.classList.remove('levelup');void g.getBBox();g.classList.add('levelup');
+  if(lvl===levels.length-1){$('crown').setAttribute('opacity','1');$('trainBtn').textContent='good boy 🥹';confetti(['⭐','🦴','💛'])}};
+
+// close
+$('bYes').onclick=()=>{$('bTitle').innerHTML='yayyy 🥹<br>kept.';
+  $('bClosing').textContent="thank you for keeping me.\ni'll keep getting better, i promise.\nall of it for you, kuchu puchu 💛";
+  $('bYes').textContent='love you 💛';confetti(['💛','🌼','🐾','✨','🥷'])};
+
+layout();
 })();
 </script>
 </body>
